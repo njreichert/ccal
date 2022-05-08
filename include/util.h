@@ -29,4 +29,4 @@ bool is_numeric(std::string str);
  *
  * @returns OpType's zero-equivalent, or stack.back() if the stack has it.
  */
-OpType pop_or_zero(std::vector<OpType> stack);
+OpType pop_or_zero(std::vector<OpType> &stack);

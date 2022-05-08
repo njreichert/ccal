@@ -33,11 +33,11 @@ bool is_numeric(std::string str)
     return numeric;
 }
 
-OpType pop_or_zero(std::vector<OpType> stack)
+OpType pop_or_zero(std::vector<OpType> &stack)
 {
     OpType retval = OpType();
 
-    if (stack.size() < 1) {
+    if (stack.size() > 0) {
         retval = stack.back();
         stack.pop_back();
     }
