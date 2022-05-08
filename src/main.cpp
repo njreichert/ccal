@@ -31,21 +31,7 @@ int main(void)
     vector<OpType> stack;
     
     while(running) {
-        for (int i = DISPLAY_SIZE; i > stack.size(); i--) {
-            std::cout << i << ":\t" << OpType() << std::endl;
-        }
-
-        if (stack.size() < DISPLAY_SIZE) {
-            for (std::vector<OpType>::size_type i = 0; i < stack.size(); i++) {
-                std::cout << stack.size() - i << ":\t" << stack[i] << std::endl;
-            }
-        } else {
-            for (std::vector<OpType>::size_type i = DISPLAY_SIZE; i > 0; i--) {
-                std::cout << i << ":\t" << stack[stack.size() - i] << std::endl;
-            }
-        }
-
-        std::cout << "> " << std::flush;
+        print_state(stack);
         std::getline(std::cin, current_line);
 
         if (current_line[current_line.size() - 1] == '\n') {

@@ -63,3 +63,22 @@ bool parse_input(std::string line, std::vector<OpType> &stack)
     return true;
 }
 
+void print_state(const std::vector<OpType> &stack)
+{
+    for (int i = DISPLAY_SIZE; i > stack.size(); i--) {
+        std::cout << i << ":\t" << OpType() << std::endl;
+    }
+
+    if (stack.size() < DISPLAY_SIZE) {
+        for (std::vector<OpType>::size_type i = 0; i < stack.size(); i++) {
+            std::cout << stack.size() - i << ":\t" << stack[i] << std::endl;
+        }
+    } else {
+        for (std::vector<OpType>::size_type i = DISPLAY_SIZE; i > 0; i--) {
+            std::cout << i << ":\t" << stack[stack.size() - i] << std::endl;
+        }
+    }
+
+    std::cout << "> " << std::flush;
+}
+

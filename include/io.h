@@ -21,3 +21,10 @@
  */
 bool parse_input(std::string line, std::vector<OpType> &stack);
 
+/**
+ * @brief Prints out the top DISPLAY_SIZE items in the stack, and a prompt for input.
+ *
+ * @param stack The stack to print.
+ */
+void print_state(const std::vector<OpType> &stack);
+
