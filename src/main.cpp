@@ -21,6 +21,7 @@ using std::string;
 
 int main(void)
 {
+    getchar();
     bool running = true;
     string current_line;
 
@@ -31,16 +32,16 @@ int main(void)
     
     while(running) {
         for (int i = DISPLAY_SIZE; i > stack.size(); i--) {
-            std::cout << i << ": " << OpType() << std::endl;
+            std::cout << i << ":\t" << OpType() << std::endl;
         }
 
         if (stack.size() < DISPLAY_SIZE) {
             for (std::vector<OpType>::size_type i = 0; i < stack.size(); i++) {
-                std::cout << stack.size() - i << stack[i] << std::endl;
+                std::cout << stack.size() - i << ":\t" << stack[i] << std::endl;
             }
         } else {
             for (std::vector<OpType>::size_type i = DISPLAY_SIZE; i > 0; i--) {
-                std::cout << i << stack[i - 1] << std::endl;
+                std::cout << i << ":\t" << stack[stack.size() - i] << std::endl;
             }
         }
 
