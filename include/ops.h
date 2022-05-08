@@ -27,14 +27,9 @@
 /* TODO */
 
 /* Two-argument functions */
-OpType add(OpType a, OpType b);
+/* TODO */
 
-OpType subtract(OpType a, OpType b);
-
-OpType multiply(OpType a, OpType b);
-
-OpType divide(OpType a, OpType b);
-
+/* TODO: Possibly relocate as an externally-linked variable? */
 const std::unordered_map<std::string, OneFunc> one_arg_ops = {};
 
 const std::unordered_map<std::string, TwoFunc> two_arg_ops = {
@@ -43,5 +38,7 @@ const std::unordered_map<std::string, TwoFunc> two_arg_ops = {
     {"*", [](OpType a, OpType b){ return a * b; }},
     {"/", [](OpType a, OpType b){ return a / b; }}
 };
+
+
 
 #endif

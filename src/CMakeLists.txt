@@ -6,7 +6,7 @@ include_directories(${CommandCalc_SOURCE_DIR}/include)
 # Add any libraries similarily below.
 
 # Define main executable's name.
-add_executable(ccal main.cpp)
+add_executable(ccal main.cpp io.cpp ops.cpp util.cpp)
 
 set_target_properties(
     ccal
