@@ -14,8 +14,11 @@
  *
  * "defs.h"
  */
+
 #include "io.h"
+#include "ops.h"
 #include "util.h"
+#include <stdexcept>
 
 bool parse_input(std::string line, std::vector<OpType> &stack)
 {
@@ -38,13 +41,23 @@ bool parse_input(std::string line, std::vector<OpType> &stack)
         /* TODO: Check. This should not go out of bounds if we are at the end of the string. */
         line.erase(0, delimiter_pos + 1); 
 
+        /* TODO: Add commands for changing operating modes. */
         if (is_numeric(current_token)) {
             stack.push_back(std::stod(current_token));
-        } else {
-            /* TODO: Apply commands. */
-        }
+        } else if (one_arg_ops.find(current_token) != one_arg_ops.end()) {
+            OpType op_one = pop_or_zero(stack);
 
-            
+            stack.push_back(one_arg_ops.at(current_token)(op_one));
+        } else if (two_arg_ops.find(current_token) != two_arg_ops.end()) {
+            OpType op_two = pop_or_zero(stack);
+            OpType op_one = pop_or_zero(stack);
+
+            stack.push_back(two_arg_ops.at(current_token)(op_one, op_two));
+        } else if (current_token == "exit" || current_token == "quit") {
+            return false;
+        } else {
+            throw std::invalid_argument(current_token);
+        }
     }
     /* If we have gotten here, we haven't seen quit yet. */
     return true;

@@ -10,6 +10,9 @@
  * Already included in util.h:
  *
  * <string>
+ * <vector>
+ *
+ * "defs.h"
  */
 
 #include <stdexcept>
@@ -28,5 +31,17 @@ bool is_numeric(std::string str)
     }
 
     return numeric;
+}
+
+OpType pop_or_zero(std::vector<OpType> stack)
+{
+    OpType retval = OpType();
+
+    if (stack.size() < 1) {
+        retval = stack.back();
+        stack.pop_back();
+    }
+
+    return retval;
 }
 

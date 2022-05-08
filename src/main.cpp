@@ -7,12 +7,14 @@
  */
 
 #include <iostream>
+#include <ostream>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 #include "io.h"
 #include "ops.h"
+#include "defs.h"
 
 using std::vector;
 using std::string;
@@ -28,6 +30,21 @@ int main(void)
     vector<OpType> stack;
     
     while(running) {
+        for (int i = DISPLAY_SIZE; i > stack.size(); i--) {
+            std::cout << i << ": " << OpType() << std::endl;
+        }
+
+        if (stack.size() < DISPLAY_SIZE) {
+            for (std::vector<OpType>::size_type i = 0; i < stack.size(); i++) {
+                std::cout << stack.size() - i << stack[i] << std::endl;
+            }
+        } else {
+            for (std::vector<OpType>::size_type i = DISPLAY_SIZE; i > 0; i--) {
+                std::cout << i << stack[i - 1] << std::endl;
+            }
+        }
+
+        std::cout << "> " << std::flush;
         std::getline(std::cin, current_line);
 
         if (current_line[current_line.size() - 1] == '\n') {

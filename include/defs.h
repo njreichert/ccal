@@ -9,6 +9,9 @@
 #ifndef _DEFS_H
 #define _DEFS_H
 
+/* Defines */
+#define DISPLAY_SIZE 4
+
 /* Change this to redefine the standard datatype used. */
 typedef double OpType;
 
