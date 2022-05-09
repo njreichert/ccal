@@ -54,13 +54,9 @@ const std::unordered_map<std::string, TwoFunc> two_arg_ops = {
     {"*", [](OpType a, OpType b){ return a * b; }},
     {"/", [](OpType a, OpType b){ return a / b; }},
     
-    /*
-     * std::pow returns x^y. Since we are working off a stack, we want y^x
-     * (so the power is at the top of the stack.
-     */
     /* TODO: Find a way to combine these two, as they're just semantics. */
-    {"^", [](OpType a, OpType b){ return std::pow(b, a); }},
-    {"pow", [](OpType a, OpType b){ return std::pow(b, a); }},
+    {"^", [](OpType a, OpType b){ return std::pow(a, b); }},
+    {"pow", [](OpType a, OpType b){ return std::pow(a, b); }},
     {"nroot", [](OpType a, OpType b){ return std::pow(b, (1 / a)); }}
 };
 
