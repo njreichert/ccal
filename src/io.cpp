@@ -18,6 +18,7 @@
 #include "io.h"
 #include "ops.h"
 #include "util.h"
+#include <iostream>
 #include <stdexcept>
 
 bool parse_input(std::string line, std::vector<OpType> &stack)
@@ -53,6 +54,10 @@ bool parse_input(std::string line, std::vector<OpType> &stack)
             OpType op_one = pop_or_zero(stack);
 
             stack.push_back(two_arg_ops.at(current_token)(op_one, op_two));
+        } else if (constants.find(current_token) != constants.end()) {
+            stack.push_back(constants.at(current_token));
+        } else if (stack_ops.find(current_token) != stack_ops.end()) {
+            stack_ops.at(current_token)(stack);
         } else if (current_token == "exit" || current_token == "quit") {
             return false;
         } else {
