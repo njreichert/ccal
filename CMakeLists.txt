@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(CommandCalc)
+project(CommandCalc VERSION "0.0.1")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CommandCalc_SOURCE_DIR}/bin)
 
@@ -17,6 +17,7 @@ add_executable(ccal
     src/io.cpp
     src/ops.cpp
     src/util.cpp
+    src/command_line.cpp
 )
 
 set_target_properties(
