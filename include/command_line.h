@@ -6,6 +6,8 @@
  * Defninitions for command-line parsing routines.
  */
 
+#include <string>
+
 /**
  * @struct CommandOpts
  * @brief Options to pass back to the main program.
@@ -22,15 +24,25 @@
 typedef struct COMMAND_OPTS {
     bool exit;
     bool is_one_shot;
-    int one_shot_start;
+    std::string one_shot_statement;
 } CommandOpts;
 
 /**
  * @brief Determine whether any valid arguments are passed to argv.
  *
- * @param argc The number of arguments.
- * @param argv All arguments passed by the operating system to main().
+ * @param argv A reference to all arguments after the program name, space-delimited.
  *
  * @returns a struct which can be used to determine initial program state.
  */
-CommandOpts parse_argv(int argc, char **argv);
+CommandOpts parse_cmd_line_args(const std::string &argv);
+
+/**
+ * @brief Concatenates all command-line arguments after the program name into a string.
+ *
+ * @param argc The number of arguments.
+ * @param argv All arguments passed by the operating system to main().
+ *
+ * @returns A string containing all arguments after the program name, space-delimited.
+ */
+std::string argv_to_string(int argc, char **argv);
+

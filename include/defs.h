@@ -10,6 +10,7 @@
 #define _DEFS_H
 
 #include <string>
+#include <vector>
 
 /* Defines */
 #define DISPLAY_SIZE 4
@@ -23,13 +24,13 @@ Options:
  -h, --help         Print a help statement.
  -v, --version      Print the current version.
  -c                 Evaluate and print the following RPN Statement.
-)"
+)";
 
 /* TODO: Define and verify in CMakeList.txt. */
 const std::string VERSION_PRINT = R"(
 ccal Version %PROJECT_VERSION%
 By Nikolaus J. Reichert <nikolaus@njreichert.ca>
-)"
+)";
 
 /* Change this to redefine the standard datatype used. */
 typedef double OpType;
