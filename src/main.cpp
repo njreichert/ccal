@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     if (!options.exit) {
         if (options.is_one_shot) {
             try {
+                strip_string(options.one_shot_statement);
                 parse_input(options.one_shot_statement, stack);
                 std::cout << pop_or_zero(stack) << std::endl;
             } catch (const std::exception &e) { /* TODO: See below. */
@@ -46,10 +47,8 @@ int main(int argc, char *argv[])
             while(running) {
                 print_state(stack);
                 std::getline(std::cin, current_line);
-
-                if (current_line[current_line.size() - 1] == '\n') {
-                    current_line.erase(current_line.size() - 1);
-                }
+                
+                strip_string(options.one_shot_statement);
 
                 try {
                     running = parse_input(current_line, stack);

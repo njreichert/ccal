@@ -64,7 +64,10 @@ std::string argv_to_string(int argc, char **argv)
     std::string output = "";
     for (int i = 1; i < argc; i++) {
         output += argv[i];
-        output += " ";
+        
+        if (i < argc - 1) {
+            output += " ";
+        }
     }
 
     return output;

@@ -16,6 +16,8 @@
  */
 
 #include <stdexcept>
+#include <cctype>
+#include <algorithm>
 
 #include "util.h"
 
@@ -45,3 +47,13 @@ OpType pop_or_zero(std::vector<OpType> &stack)
     return retval;
 }
 
+void strip_string(std::string &str)
+{
+    while (str.size() > 0 && std::isspace(str.front())) {
+        str.erase(0, 1);
+    }
+
+    while (str.size() > 0 && std::isspace(str.back())) {
+        str.erase(str.size() - 1, str.size());
+    }
+}

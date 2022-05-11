@@ -30,3 +30,11 @@ bool is_numeric(std::string str);
  * @returns OpType's zero-equivalent, or stack.back() if the stack has it.
  */
 OpType pop_or_zero(std::vector<OpType> &stack);
+
+/**
+ * @brief strip all whitespace from the given string.
+ *
+ * @param str The string to remove from (in place!)
+ */
+void strip_string(std::string &str);
+
