@@ -42,7 +42,7 @@ CommandOpts parse_cmd_line_args(const std::string &argv)
         }
 
         if (current_arg == "-h" || current_arg == "--help") {
-            std::cout << VERSION_PRINT << std::endl;
+            std::cout << VERSION_PRINT << "\n" << std::endl;
             std::cout << HELP_PRINT << std::endl;
             opts.exit = true;
         } else if (current_arg == "-v" || current_arg == "--version") {

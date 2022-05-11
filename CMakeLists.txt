@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(CommandCalc VERSION "0.0.1")
+project(CommandCalc VERSION 0.0.1)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CommandCalc_SOURCE_DIR}/bin)
 
@@ -26,4 +26,6 @@ set_target_properties(
         OUTPUT_NAME "ccal"
         SUFFIX ""
 )
+
+add_compile_definitions(VERSION="${CMAKE_PROJECT_VERSION}")
 

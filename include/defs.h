@@ -12,25 +12,24 @@
 #include <string>
 #include <vector>
 
+#ifndef VERSION
+#define VERSION "ERROR"
+#endif
+
 /* Defines */
 #define DISPLAY_SIZE 4
 
 /* Constants */
-const std::string HELP_PRINT = R"(
-Usage:
- ccal [options]
+const std::string HELP_PRINT = R"(Usage:
+ ccal [options] [statement]
 
 Options:
  -h, --help         Print a help statement.
  -v, --version      Print the current version.
- -c                 Evaluate and print the following RPN Statement.
-)";
+ -c                 Evaluate and print the following RPN Statement.)";
 
-/* TODO: Define and verify in CMakeList.txt. */
-const std::string VERSION_PRINT = R"(
-ccal Version %PROJECT_VERSION%
-By Nikolaus J. Reichert <nikolaus@njreichert.ca>
-)";
+const std::string VERSION_PRINT = R"(ccal Version )" VERSION R"(
+By Nikolaus J. Reichert <nikolaus@njreichert.ca>)";
 
 /* Change this to redefine the standard datatype used. */
 typedef double OpType;
