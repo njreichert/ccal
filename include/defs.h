@@ -26,7 +26,9 @@ const std::string HELP_PRINT = R"(Usage:
 Options:
  -h, --help         Print a help statement.
  -v, --version      Print the current version.
- -c                 Evaluate and print the following RPN Statement.)";
+
+Statements:
+ Statements are only executed in the absence of other options.)";
 
 const std::string VERSION_PRINT = R"(ccal Version )" VERSION R"(
 By Nikolaus J. Reichert <nikolaus@njreichert.ca>)";
