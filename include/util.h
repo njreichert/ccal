@@ -21,6 +21,15 @@
 bool is_numeric(std::string str);
 
 /**
+ * @brief Checks if a given operand is effectively an integer.
+ *
+ * @param op The operand in question.
+ *
+ * @returns true if the operand is equivalent to an integer, otherwise false.
+ */
+bool is_int(OpType op);
+
+/**
  * @brief Attempts to pop off the top of the given stack, returning zero if it is empty.
  *
  * NB: Will modify stack!

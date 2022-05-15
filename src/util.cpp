@@ -35,6 +35,12 @@ bool is_numeric(std::string str)
     return numeric;
 }
 
+bool is_int(OpType op)
+{
+    /* TODO: Find a better way to do this. */
+    return (long) op == op;
+}
+
 OpType pop_or_zero(std::vector<OpType> &stack)
 {
     OpType retval = OpType();
