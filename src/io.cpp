@@ -58,7 +58,7 @@ bool parse_input(std::string line, std::vector<OpType> &stack)
             stack.push_back(constants.at(current_token));
         } else if (stack_ops.find(current_token) != stack_ops.end()) {
             stack_ops.at(current_token)(stack);
-        } else if (current_token == "exit" || current_token == "quit") {
+        } else if (current_token == "exit" || current_token == "quit" || current_token == "q") {
             return false;
         } else {
             throw std::invalid_argument(current_token);
