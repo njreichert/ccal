@@ -21,47 +21,69 @@
 #include <iostream>
 #include <stdexcept>
 
-bool parse_input(std::string line, std::vector<OpType> &stack)
-{
-    std::string current_token;
-    std::string::size_type delimiter_pos; /* TODO: Replace with iterators. */
-    bool has_token = true;
+const std::unordered_map<std::string, OneFunc> one_arg_ops = {
+    {"sqrt", [](OpType a){ return std::sqrt(a); }},
+    {"exp", [](OpType a){ return std::exp(a); }},
+    {"sin", [](OpType a){ return std::sin(a); }},
+    {"cos", [](OpType a){ return std::cos(a); }},
+    {"tan", [](OpType a){ return std::tan(a); }},
+    {"arcsin", [](OpType a){ return std::asin(a); }},
+    {"arccos", [](OpType a){ return std::acos(a); }},
+    {"arctan", [](OpType a){ return std::atan(a); }},
+    {"log", [](OpType a){ return std::log10(a); }}, /* Yes, log10. log_e == ln. */
+    {"ln", [](OpType a){ return std::log(a); }},
+    {"log2", [](OpType a){ return std::log2(a); }},
+    {"abs", [](OpType a){ return std::abs(a); }},
+    {"inv", [](OpType a){ return (1 / a); }},
+    {"!", factorial}
+};
+
+const std::unordered_map<std::string, TwoFunc> two_arg_ops = {
+    {"+", [](OpType a, OpType b){ return a + b; }},
+    {"-", [](OpType a, OpType b){ return a - b; }},
+    {"*", [](OpType a, OpType b){ return a * b; }},
+    {"/", [](OpType a, OpType b){ return a / b; }},
     
-    while (has_token) {
-        delimiter_pos = line.find(" ");
+    /* TODO: Find a way to combine these two, as they're just semantics. */
+    {"^", [](OpType a, OpType b){ return std::pow(a, b); }},
+    {"pow", [](OpType a, OpType b){ return std::pow(a, b); }},
+    {"nroot", [](OpType a, OpType b){ return std::pow(b, (1 / a)); }}
+};
 
-        /* i.e.: No spaces found in remaining string. */
-        if (delimiter_pos == std::string::npos) {
-            delimiter_pos = line.size();
-            has_token = false; /* Will not have any more after this. */
-        }
-        
-        current_token = line.substr(0, delimiter_pos);
+const std::unordered_map<std::string, StackOp> stack_ops = {
+    {"clear", [](std::vector<OpType> &vec){ vec.clear(); }},
+    {"sum", sum_and_clear}
+};
 
-        /* Erase current token, AND delimeter. */
-        /* TODO: Check. This should not go out of bounds if we are at the end of the string. */
-        line.erase(0, delimiter_pos + 1); 
+const std::unordered_map<std::string, OpType> constants = {
+    {"pi", std::asin(1) * 2},
+    {"e", std::exp(1)}
+};
+
+bool parse_input(const std::vector<std::string> &op_list, std::vector<OpType> &stack)
+{
+    for (const auto &curr : op_list) {
 
         /* TODO: Add commands for changing operating modes. */
-        if (is_numeric(current_token)) {
-            stack.push_back(std::stod(current_token));
-        } else if (one_arg_ops.find(current_token) != one_arg_ops.end()) {
+        if (is_numeric(curr)) {
+            stack.push_back(std::stod(curr)); /* TODO: Not portable to other types! */
+        } else if (one_arg_ops.find(curr) != one_arg_ops.end()) {
             OpType op_one = pop_or_zero(stack);
 
-            stack.push_back(one_arg_ops.at(current_token)(op_one));
-        } else if (two_arg_ops.find(current_token) != two_arg_ops.end()) {
+            stack.push_back(one_arg_ops.at(curr)(op_one));
+        } else if (two_arg_ops.find(curr) != two_arg_ops.end()) {
             OpType op_two = pop_or_zero(stack);
             OpType op_one = pop_or_zero(stack);
 
-            stack.push_back(two_arg_ops.at(current_token)(op_one, op_two));
-        } else if (constants.find(current_token) != constants.end()) {
-            stack.push_back(constants.at(current_token));
-        } else if (stack_ops.find(current_token) != stack_ops.end()) {
-            stack_ops.at(current_token)(stack);
-        } else if (current_token == "exit" || current_token == "quit" || current_token == "q") {
+            stack.push_back(two_arg_ops.at(curr)(op_one, op_two));
+        } else if (constants.find(curr) != constants.end()) {
+            stack.push_back(constants.at(curr));
+        } else if (stack_ops.find(curr) != stack_ops.end()) {
+            stack_ops.at(curr)(stack);
+        } else if (curr == "exit" || curr == "quit" || curr == "q") {
             return false;
         } else {
-            throw std::invalid_argument(current_token);
+            throw std::invalid_argument(curr);
         }
     }
     /* If we have gotten here, we haven't seen quit yet. */

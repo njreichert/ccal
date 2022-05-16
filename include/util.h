@@ -41,6 +41,15 @@ bool is_int(OpType op);
 OpType pop_or_zero(std::vector<OpType> &stack);
 
 /**
+ * @brief appends every contiguous non-whitespace section of text to a vector.
+ *
+ * @param str The string in question.
+ *
+ * @returns a vector of all non-whitespace "words" in the given string.
+ */
+std::vector<std::string> string_to_vec(std::string str);
+
+/**
  * @brief strip all whitespace from the given string.
  *
  * @param str The string to remove from (in place!)

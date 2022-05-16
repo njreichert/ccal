@@ -18,6 +18,7 @@
 #include <stdexcept>
 #include <cctype>
 #include <algorithm>
+#include <vector>
 
 #include "util.h"
 
@@ -62,4 +63,34 @@ void strip_string(std::string &str)
     while (str.size() > 0 && std::isspace(str.back())) {
         str.erase(str.size() - 1, str.size());
     }
+}
+
+std::vector<std::string> string_to_vec(std::string str)
+{
+    std::string::size_type curr = 0;
+    std::string::size_type prev = 0;
+
+    std::string current_word;
+
+    std::vector<std::string> vec;
+
+    while (curr != std::string::npos) {
+        curr = str.find(" ", prev);
+
+        if (curr == std::string::npos) {
+            current_word = str.substr(prev, str.size() - prev);
+        } else {
+            current_word = str.substr(prev, curr - prev);
+        }
+        
+        strip_string(current_word);
+
+        if (current_word != "") {
+            vec.push_back(current_word);
+        }
+
+        prev = curr + 1;
+    }
+
+    return vec;
 }

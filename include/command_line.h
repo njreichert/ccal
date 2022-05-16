@@ -7,6 +7,7 @@
  */
 
 #include <string>
+#include <vector>
 
 /**
  * @struct CommandOpts
@@ -24,17 +25,16 @@
 typedef struct COMMAND_OPTS {
     bool exit;
     bool is_one_shot;
-    std::string one_shot_statement;
 } CommandOpts;
 
 /**
  * @brief Determine whether any valid arguments are passed to argv.
  *
- * @param argv A reference to all arguments after the program name, space-delimited.
+ * @param argv A reference to a vector of all arguments after the program name.
  *
  * @returns a struct which can be used to determine initial program state.
  */
-CommandOpts parse_cmd_line_args(const std::string &argv);
+CommandOpts parse_cmd_line_args(const std::vector<std::string> &argv);
 
 /**
  * @brief Concatenates all command-line arguments after the program name into a string.

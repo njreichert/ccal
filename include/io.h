@@ -14,12 +14,12 @@
 /**
  * @brief runs though a given line of input (without '\n') and interprets it.
  *
- * @param line The line in question.
+ * @param op_list A reference to a vector containing the given line, split up by spaces.
  * @param stack A reference to the calculator's current stack.
  *
  * @returns true if 'quit' or 'exit' was not input.
  */
-bool parse_input(std::string line, std::vector<OpType> &stack);
+bool parse_input(const std::vector<std::string> &op_list, std::vector<OpType> &stack);
 
 /**
  * @brief Prints out the top DISPLAY_SIZE items in the stack, and a prompt for input.
