@@ -59,7 +59,7 @@ const std::unordered_map<std::string, OneFunc> one_arg_ops = {
     {"log2", [](OpType a){ return std::log2(a); }},
     {"abs", [](OpType a){ return std::abs(a); }},
     {"inv", [](OpType a){ return (1 / a); }},
-    {"^", factorial}
+    {"!", factorial}
 };
 
 const std::unordered_map<std::string, TwoFunc> two_arg_ops = {

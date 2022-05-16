@@ -6,6 +6,7 @@
  * Implemenation for various operations.
  */
 
+#include <string>
 #include <vector>
 #include <numeric>
 #include <stdexcept>
@@ -21,12 +22,18 @@ void sum_and_clear(std::vector<OpType> &stack)
     stack.push_back(sum);
 }
 
-/* TODO
 OpType factorial(OpType a)
 {
+    OpType total = 1;
+
     if (!is_int(a)) {
-        throw std::invalid_argument;
+        throw std::invalid_argument(std::to_string(a)); /* TODO: Find a way to pass the arg safely. */
     }
 
-    while
-*/
+    while (a > 0) {
+       total *= a--;
+    }
+
+    return total;
+}
+
