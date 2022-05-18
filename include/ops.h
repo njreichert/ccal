@@ -29,7 +29,7 @@
  *
  * @throws std::invalid_argument if the number is not an integer.
  */
-OpType factorial(OpType a);
+double factorial(double a);
 
 /* Two-argument functions */
 /* TODO */
@@ -40,7 +40,7 @@ OpType factorial(OpType a);
  * 
  * @param stack The stack in question.
  */
-void sum_and_clear(std::vector<OpType> &stack);
+void sum_and_clear(std::vector<double> &stack);
 
 #endif
 

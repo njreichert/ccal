@@ -27,7 +27,7 @@ bool is_numeric(std::string str);
  *
  * @returns true if the operand is equivalent to an integer, otherwise false.
  */
-bool is_int(OpType op);
+bool is_int(double op);
 
 /**
  * @brief Attempts to pop off the top of the given stack, returning zero if it is empty.
@@ -36,9 +36,9 @@ bool is_int(OpType op);
  *
  * @param stack: The stack in question.
  *
- * @returns OpType's zero-equivalent, or stack.back() if the stack has it.
+ * @returns double's zero-equivalent, or stack.back() if the stack has it.
  */
-OpType pop_or_zero(std::vector<OpType> &stack);
+double pop_or_zero(std::vector<double> &stack);
 
 /**
  * @brief appends every contiguous non-whitespace section of text to a vector.

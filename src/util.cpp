@@ -36,15 +36,15 @@ bool is_numeric(std::string str)
     return numeric;
 }
 
-bool is_int(OpType op)
+bool is_int(double op)
 {
     /* TODO: Find a better way to do this. */
     return (long) op == op;
 }
 
-OpType pop_or_zero(std::vector<OpType> &stack)
+double pop_or_zero(std::vector<double> &stack)
 {
-    OpType retval = OpType();
+    double retval = double();
 
     if (stack.size() > 0) {
         retval = stack.back();

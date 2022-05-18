@@ -15,16 +15,16 @@
 #include "defs.h"
 #include "util.h"
 
-void sum_and_clear(std::vector<OpType> &stack)
+void sum_and_clear(std::vector<double> &stack)
 {
-    OpType sum = std::accumulate(stack.begin(), stack.end(), OpType());
+    double sum = std::accumulate(stack.begin(), stack.end(), double());
     stack.clear();
     stack.push_back(sum);
 }
 
-OpType factorial(OpType a)
+double factorial(double a)
 {
-    OpType total = 1;
+    double total = 1;
 
     if (!is_int(a)) {
         throw std::invalid_argument(std::to_string(a)); /* TODO: Find a way to pass the arg safely. */

@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     /*
      * Main idea: We always at least want to read from items 0-3 so we can print them.
      */
-    std::vector<OpType> stack;
+    std::vector<double> stack;
     
     if (!options.exit) {
         if (options.is_one_shot) {

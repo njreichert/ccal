@@ -22,45 +22,45 @@
 #include <stdexcept>
 
 const std::unordered_map<std::string, OneFunc> one_arg_ops = {
-    {"sqrt", [](OpType a){ return std::sqrt(a); }},
-    {"exp", [](OpType a){ return std::exp(a); }},
-    {"sin", [](OpType a){ return std::sin(a); }},
-    {"cos", [](OpType a){ return std::cos(a); }},
-    {"tan", [](OpType a){ return std::tan(a); }},
-    {"arcsin", [](OpType a){ return std::asin(a); }},
-    {"arccos", [](OpType a){ return std::acos(a); }},
-    {"arctan", [](OpType a){ return std::atan(a); }},
-    {"log", [](OpType a){ return std::log10(a); }}, /* Yes, log10. log_e == ln. */
-    {"ln", [](OpType a){ return std::log(a); }},
-    {"log2", [](OpType a){ return std::log2(a); }},
-    {"abs", [](OpType a){ return std::abs(a); }},
-    {"inv", [](OpType a){ return (1 / a); }},
+    {"sqrt", [](double a){ return std::sqrt(a); }},
+    {"exp", [](double a){ return std::exp(a); }},
+    {"sin", [](double a){ return std::sin(a); }},
+    {"cos", [](double a){ return std::cos(a); }},
+    {"tan", [](double a){ return std::tan(a); }},
+    {"arcsin", [](double a){ return std::asin(a); }},
+    {"arccos", [](double a){ return std::acos(a); }},
+    {"arctan", [](double a){ return std::atan(a); }},
+    {"log", [](double a){ return std::log10(a); }}, /* Yes, log10. log_e == ln. */
+    {"ln", [](double a){ return std::log(a); }},
+    {"log2", [](double a){ return std::log2(a); }},
+    {"abs", [](double a){ return std::abs(a); }},
+    {"inv", [](double a){ return (1 / a); }},
     {"!", factorial}
 };
 
 const std::unordered_map<std::string, TwoFunc> two_arg_ops = {
-    {"+", [](OpType a, OpType b){ return a + b; }},
-    {"-", [](OpType a, OpType b){ return a - b; }},
-    {"*", [](OpType a, OpType b){ return a * b; }},
-    {"/", [](OpType a, OpType b){ return a / b; }},
+    {"+", [](double a, double b){ return a + b; }},
+    {"-", [](double a, double b){ return a - b; }},
+    {"*", [](double a, double b){ return a * b; }},
+    {"/", [](double a, double b){ return a / b; }},
     
     /* TODO: Find a way to combine these two, as they're just semantics. */
-    {"^", [](OpType a, OpType b){ return std::pow(a, b); }},
-    {"pow", [](OpType a, OpType b){ return std::pow(a, b); }},
-    {"nroot", [](OpType a, OpType b){ return std::pow(b, (1 / a)); }}
+    {"^", [](double a, double b){ return std::pow(a, b); }},
+    {"pow", [](double a, double b){ return std::pow(a, b); }},
+    {"nroot", [](double a, double b){ return std::pow(b, (1 / a)); }}
 };
 
 const std::unordered_map<std::string, StackOp> stack_ops = {
-    {"clear", [](std::vector<OpType> &vec){ vec.clear(); }},
+    {"clear", [](std::vector<double> &vec){ vec.clear(); }},
     {"sum", sum_and_clear}
 };
 
-const std::unordered_map<std::string, OpType> constants = {
+const std::unordered_map<std::string, double> constants = {
     {"pi", std::asin(1) * 2},
     {"e", std::exp(1)}
 };
 
-bool parse_input(const std::vector<std::string> &op_list, std::vector<OpType> &stack)
+bool parse_input(const std::vector<std::string> &op_list, std::vector<double> &stack)
 {
     for (const auto &curr : op_list) {
 
@@ -68,12 +68,12 @@ bool parse_input(const std::vector<std::string> &op_list, std::vector<OpType> &s
         if (is_numeric(curr)) {
             stack.push_back(std::stod(curr)); /* TODO: Not portable to other types! */
         } else if (one_arg_ops.find(curr) != one_arg_ops.end()) {
-            OpType op_one = pop_or_zero(stack);
+            double op_one = pop_or_zero(stack);
 
             stack.push_back(one_arg_ops.at(curr)(op_one));
         } else if (two_arg_ops.find(curr) != two_arg_ops.end()) {
-            OpType op_two = pop_or_zero(stack);
-            OpType op_one = pop_or_zero(stack);
+            double op_two = pop_or_zero(stack);
+            double op_one = pop_or_zero(stack);
 
             stack.push_back(two_arg_ops.at(curr)(op_one, op_two));
         } else if (constants.find(curr) != constants.end()) {
@@ -90,18 +90,18 @@ bool parse_input(const std::vector<std::string> &op_list, std::vector<OpType> &s
     return true;
 }
 
-void print_state(const std::vector<OpType> &stack)
+void print_state(const std::vector<double> &stack)
 {
     for (int i = DISPLAY_SIZE; i > stack.size(); i--) {
-        std::cout << i << ":\t" << OpType() << std::endl;
+        std::cout << i << ":\t" << double() << std::endl;
     }
 
     if (stack.size() < DISPLAY_SIZE) {
-        for (std::vector<OpType>::size_type i = 0; i < stack.size(); i++) {
+        for (std::vector<double>::size_type i = 0; i < stack.size(); i++) {
             std::cout << stack.size() - i << ":\t" << stack[i] << std::endl;
         }
     } else {
-        for (std::vector<OpType>::size_type i = DISPLAY_SIZE; i > 0; i--) {
+        for (std::vector<double>::size_type i = DISPLAY_SIZE; i > 0; i--) {
             std::cout << i << ":\t" << stack[stack.size() - i] << std::endl;
         }
     }

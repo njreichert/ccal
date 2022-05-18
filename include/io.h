@@ -19,12 +19,12 @@
  *
  * @returns true if 'quit' or 'exit' was not input.
  */
-bool parse_input(const std::vector<std::string> &op_list, std::vector<OpType> &stack);
+bool parse_input(const std::vector<std::string> &op_list, std::vector<double> &stack);
 
 /**
  * @brief Prints out the top DISPLAY_SIZE items in the stack, and a prompt for input.
  *
  * @param stack The stack to print.
  */
-void print_state(const std::vector<OpType> &stack);
+void print_state(const std::vector<double> &stack);
 
