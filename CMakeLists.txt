@@ -18,6 +18,7 @@ add_executable(ccal
     src/ops.cpp
     src/util.cpp
     src/command_line.cpp
+    src/rpnstack.cpp
 )
 
 set_target_properties(

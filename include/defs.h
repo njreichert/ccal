@@ -33,14 +33,5 @@ Statements:
 const std::string VERSION_PRINT = R"(ccal Version )" VERSION R"(
 By Nikolaus J. Reichert <nikolaus@njreichert.ca>)";
 
-/* Functions that act on only one operand on the stack (negation, sqrt, etc... */
-typedef double (*OneFunc)(double);
-
-/* Likewise, functions that take two operands (+ - * /)... */
-typedef double (*TwoFunc)(double, double);
-
-/* And operations on the stack itself. */
-typedef void (*StackOp)(std::vector<double> &);
-
 #endif
 
