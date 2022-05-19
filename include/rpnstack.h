@@ -43,9 +43,29 @@ public:
      * @brief Getter for m_is_error.
      */
     bool is_error() const;
+    
+    /**
+     * @brief Setter for m_is_error.
+     */
+    void is_error(bool error);
 
     /**
      * @brief Getter for m_is_radians.
      */
     bool is_radians() const;
+
+    /**
+     * @brief Setter for m_is_radians.
+     */
+    void is_radians(bool radians);
+
+    /**
+     * @brief Wrapper for this->m_stack.size().
+     */
+    std::vector<double>::size_type size() const;
+
+    /**
+     * @brief gets the nth item from the top of the stack.
+     */
+    double get(std::vector<double>::size_type n) const;
 }
