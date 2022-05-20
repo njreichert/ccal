@@ -17,8 +17,6 @@
  * TODO: Doxygen Comments for classes.
  */
 class RPNStack {
-    friend double sum_and_clear(RPNStack &stack);
-    friend double clear(RPNStack &stack);
 private:
     /* 
      * TODO: Make this function template oriented!
@@ -85,7 +83,23 @@ public:
     /**
      * @brief Pushes to the stack.
      */
-    void push(double d);
+    double push(double d);
+
+    /**
+     * @brief Clears the stack.
+     *
+     * @returns zero.
+     */
+    double clear();
+
+    /**
+     * @brief destructively sums the stack.
+     *
+     * @returns The top of the stack (the effective sum).
+     */
+    double sum();
+
+    double parse_stack_ops(const std::string &s);
 };
 
 /* Functions that act on only one operand on the stack (negation, sqrt, etc... */
@@ -94,30 +108,7 @@ typedef double (*OneFunc)(double);
 /* Likewise, functions that take two operands (+ - * /)... */
 typedef double (*TwoFunc)(double, double);
 
-/* And operations on the stack itself. */
-typedef double (*StackOp)(RPNStack &);
-
-
-
 namespace RPNHelpers {
-    /**
-     * @brief Destructively sums the stack.
-     *
-     * @param stack: The stack to sum.
-     *
-     * @returns The sum of the stack returned.
-     */
-    double sum_and_clear(RPNStack &stack);
-
-    /**
-     * @brief Clears the stack.
-     *
-     * @param stack: The stack to sum.
-     *
-     * @returns zero.
-     */
-    double clear(RPNStack &stack);
-
     const std::unordered_map<std::string, OneFunc> one_arg_ops = {
         {"sqrt", [](double a){ return std::sqrt(a); }},
         {"exp", [](double a){ return std::exp(a); }},
@@ -145,11 +136,6 @@ namespace RPNHelpers {
         {"^", [](double a, double b){ return std::pow(a, b); }},
         {"pow", [](double a, double b){ return std::pow(a, b); }},
         {"nroot", [](double a, double b){ return std::pow(b, (1 / a)); }}
-    };
-
-    const std::unordered_map<std::string, StackOp> stack_ops = {
-        {"clear", clear},
-        {"sum", sum_and_clear}
     };
 
     const std::unordered_map<std::string, double> constants = {

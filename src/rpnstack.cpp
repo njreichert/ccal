@@ -16,8 +16,8 @@
  * "defs.h"
  */
 
-#include <cmath>
 #include <unordered_map>
+#include <stdexcept>
 
 #include "rpnstack.h"
 #include "util.h"
@@ -65,9 +65,10 @@ double RPNStack::pop_or_zero()
     return retval;
 }
 
-void RPNStack::push(double d)
+double RPNStack::push(double d)
 {
     this->m_stack.push_back(d);
+    return this->get(0);
 }
 
 std::vector<double>::size_type RPNStack::size() const
@@ -75,24 +76,42 @@ std::vector<double>::size_type RPNStack::size() const
     return this->m_stack.size();
 }
 
+double RPNStack::parse_stack_ops(const std::string &s)
+{
+    /* 
+     * Using a jump table for direct operations on the stack caused a circular
+     * dependency, hence why I'm doing it here.
+     */
+
+    if (s == "clear") {
+        this->clear();
+    } else if (s == "sum") {
+        this->sum();
+    } else {
+        throw std::invalid_argument(s);
+    }
+
+    return this->get(0);
+}
+
 double RPNStack::apply_input(const std::string &s)
 {
     try {
         if (is_numeric(s)) {
             this->push(std::stod(s)); /* TODO: Not portable to other types! */
-        } else if (one_arg_ops.find(s) != one_arg_ops.end()) {
+        } else if (RPNHelpers::one_arg_ops.find(s) != RPNHelpers::one_arg_ops.end()) {
             double op_one = this->pop_or_zero();
 
-            this->push(one_arg_ops.at(s)(op_one));
-        } else if (two_arg_ops.find(s) != two_arg_ops.end()) {
+            this->push(RPNHelpers::one_arg_ops.at(s)(op_one));
+        } else if (RPNHelpers::two_arg_ops.find(s) != RPNHelpers::two_arg_ops.end()) {
             double op_two = this->pop_or_zero();
             double op_one = this->pop_or_zero();
 
-            this->push(two_arg_ops.at(s)(op_one, op_two));
-        } else if (constants.find(s) != constants.end()) {
-            this->push(constants.at(s));
-        } else if (stack_ops.find(s) != stack_ops.end()) {
-            stack_ops.at(s)(this);
+            this->push(RPNHelpers::two_arg_ops.at(s)(op_one, op_two));
+        } else if (RPNHelpers::constants.find(s) != RPNHelpers::constants.end()) {
+            this->push(RPNHelpers::constants.at(s));
+        } else {
+            this->parse_stack_ops(s);
         }
 
         this->is_error(false);
@@ -103,21 +122,21 @@ double RPNStack::apply_input(const std::string &s)
     return this->get(0);
 }
 
-double RPNHelpers::clear(RPNStack &stack)
+double RPNStack::clear()
 {
-    stack.m_stack.clear();
+    this->m_stack.clear();
     return 0;
 }
 
-double RPNHelpers::sum_and_clear(RPNStack &stack)
+double RPNStack::sum()
 {
     double sum = 0;
 
-    for (const double &i : stack.m_stack) {
+    for (const double &i : this->m_stack) {
         sum += i;
     }
 
-    RPNStack::clear(stack);
+    this->clear();
 
     return sum;
 }
