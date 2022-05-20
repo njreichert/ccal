@@ -17,6 +17,7 @@
 #include "defs.h"
 #include "command_line.h"
 #include "util.h"
+#include "rpnstack.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,11 +27,8 @@ int main(int argc, char *argv[])
     std::string current_line;
     bool running = true;
 
-    /*
-     * Main idea: We always at least want to read from items 0-3 so we can print them.
-     */
-    std::vector<double> stack;
-    
+    RPNStack stack;
+
     if (!options.exit) {
         if (options.is_one_shot) {
             try {

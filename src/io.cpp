@@ -21,8 +21,15 @@
 #include <iostream>
 #include <stdexcept>
 
-bool parse_input(const std::vector<std::string> &op_list, std::vector<double> &stack)
+bool parse_input(const std::vector<std::string> &op_list, RPNStack &stack)
 {
+    for (const std::string &s : op_list) {
+        if (s == "q" || s == "quit" || s == "exit") {
+            return false;
+        }
+        stack.parse_input(s);
+    }
+
     /* If we have gotten here, we haven't seen quit yet. */
     return true;
 }
