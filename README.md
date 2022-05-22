@@ -24,7 +24,7 @@ If no option is given, and an RPN statement (with each token delimited by spaces
 is passed to the program, that statement will be evaluated directly by the program.
 For example,
 
-```sh
+```
 $ ccal 1 2 +
 3
 ```
@@ -79,5 +79,5 @@ Sum stack `sum`
 
 $\pi$ `pi`
 
-$\euler$ `e`
+$e$ `e`
 
