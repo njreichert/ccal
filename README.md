@@ -9,7 +9,7 @@ ccal is a CLI-based Reverse Polish notation calculator.
 1. Create a `build` folder and call `cmake` and `make`.
 2. Install with `sudo make install`.
 
-```sh
+```
 mkdir build && cd build
 cmake ..
 make
