@@ -2,7 +2,7 @@
 
 By Nikolaus J. Reichert <nikolaus@njreichert.ca>
 
-ccal is a cli-based Reverse Polish Notation calculator.
+ccal is a CLI-based Reverse Polish notation calculator.
 
 ## Building
 
@@ -20,7 +20,7 @@ sudo make install
 
 `ccal [options] [statement]`
 
-If no option is given, and an rpn statement (with each token delimited by spaces)
+If no option is given, and an RPN statement (with each token delimited by spaces)
 is passed to the program, that statement will be evaluated directly by the program.
 For example,
 
@@ -35,7 +35,7 @@ $ ccal 1 2 +
 
 ## Available Operators
 
-$ + - \times \div $ `= - * /`
+$ + - \times \div $ `+ - * /`
 
 $\sqrt{x}$ `sqrt`
 
@@ -79,5 +79,5 @@ Sum stack `sum`
 
 $\pi$ `pi`
 
-$\e$ `e`
+$\euler$ `e`
 
