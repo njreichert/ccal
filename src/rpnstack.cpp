@@ -47,7 +47,7 @@ double RPNStack::get(std::vector<double>::size_type n) const
     double retval = 0;
 
     if (n < this->size()) {
-        retval = this->m_stack.at(n);
+        retval = this->m_stack.at(this->size() - n - 1);
     }
 
     return retval;
@@ -137,6 +137,7 @@ double RPNStack::sum()
     }
 
     this->clear();
+    this->push(sum);
 
     return sum;
 }

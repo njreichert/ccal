@@ -29,5 +29,5 @@ bool parse_input(const std::vector<std::string> &op_list, RPNStack &stack);
  *
  * @param stack The stack to print.
  */
-void print_state(const std::vector<double> &stack);
+void print_state(const RPNStack &stack);
 

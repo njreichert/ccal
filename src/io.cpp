@@ -13,6 +13,7 @@
  * <vector>
  *
  * "defs.h"
+ * "rpnstack.h"
  */
 
 #include "io.h"
@@ -34,20 +35,10 @@ bool parse_input(const std::vector<std::string> &op_list, RPNStack &stack)
     return true;
 }
 
-void print_state(const std::vector<double> &stack)
+void print_state(const RPNStack &stack)
 {
-    for (int i = DISPLAY_SIZE; i > stack.size(); i--) {
-        std::cout << i << ":\t" << double() << std::endl;
-    }
-
-    if (stack.size() < DISPLAY_SIZE) {
-        for (std::vector<double>::size_type i = 0; i < stack.size(); i++) {
-            std::cout << stack.size() - i << ":\t" << stack[i] << std::endl;
-        }
-    } else {
-        for (std::vector<double>::size_type i = DISPLAY_SIZE; i > 0; i--) {
-            std::cout << i << ":\t" << stack[stack.size() - i] << std::endl;
-        }
+    for (std::vector<double>::size_type i = DISPLAY_SIZE; i > 0; i--) {
+        std::cout << i << ":\t" << stack.get(i - 1) << '\n';
     }
 
     std::cout << "> " << std::flush;
