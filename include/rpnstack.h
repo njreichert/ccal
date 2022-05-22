@@ -6,6 +6,8 @@
  * Definitions for an RPN Stack class.
  */
 
+#pragma once
+
 #include <unordered_map>
 #include <vector>
 #include <string>

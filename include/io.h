@@ -6,6 +6,8 @@
  * Definitions for I/O related functions.
  */
 
+#pragma once
+
 #include <string>
 #include <vector>
 

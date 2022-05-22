@@ -6,6 +6,8 @@
  * Definitions for various utilities.
  */
 
+#pragma once
+
 #include <string>
 #include <vector>
 

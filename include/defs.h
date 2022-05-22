@@ -6,8 +6,7 @@
  * Various definitions and macros.
  */
 
-#ifndef _DEFS_H
-#define _DEFS_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -32,6 +31,4 @@ Statements:
 
 const std::string VERSION_PRINT = R"(ccal Version )" VERSION R"(
 By Nikolaus J. Reichert <nikolaus@njreichert.ca>)";
-
-#endif
 

@@ -6,8 +6,7 @@
  * functions for operations.
  */
 
-#ifndef _OPS_H
-#define _OPS_H
+#pragma once
 
 #include <unordered_map>
 #include <string>
@@ -41,6 +40,4 @@ double factorial(double a);
  * @param stack The stack in question.
  */
 void sum_and_clear(std::vector<double> &stack);
-
-#endif
 

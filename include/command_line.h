@@ -6,6 +6,8 @@
  * Defninitions for command-line parsing routines.
  */
 
+#pragma once
+
 #include <string>
 #include <vector>
 
