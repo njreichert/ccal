@@ -35,31 +35,49 @@ $ ccal 1 2 +
 
 ## Available Operators
 
-- $ + - \times \div $ `= - * /`
-- $\sqrt{x}$ `sqrt`
-- $e^x$ `exp`
-- $sin(x)$ `sin`
-- $cos(x)$ `cos`
-- $tan(x)$ `tan`
-- $Sin^{-1}(x)$ `arcsin`
-- $Cos^{-1}(x)$ `arccos`
-- $Tan^{-1}(x)$ `arctan`
-- $log\_{10}(x)$ `log`
-- $ln(x)$ `ln`
-- $log\_{2}(x)$ `log2`
-- $|x|$ `abs`
-- $\frac{1}{x}$ `inv`
-- $y^x$ `^` or `pow`
-- $\sqrt[x]{y}$ `nroot`
-- $x!$ `!`
+$ + - \times \div $ `= - * /`
+
+$\sqrt{x}$ `sqrt`
+
+$e^x$ `exp`
+
+$sin(x)$ `sin`
+
+$cos(x)$ `cos`
+
+$tan(x)$ `tan`
+
+$Sin^{-1}(x)$ `arcsin`
+
+$Cos^{-1}(x)$ `arccos`
+
+$Tan^{-1}(x)$ `arctan`
+
+$log\_{10}(x)$ `log`
+
+$ln(x)$ `ln`
+
+$log\_{2}(x)$ `log2`
+
+$|x|$ `abs`
+
+$\frac{1}{x}$ `inv`
+
+$y^x$ `^` or `pow`
+
+$\sqrt[x]{y}$ `nroot`
+
+$x!$ `!`
 
 ## Available Commands
 
-- Clear stack `clear`
-- Sum stack `sum`
+Clear stack `clear`
+
+Sum stack `sum`
 
 ## Available Constants
 
-- $\pi$ `pi`
-- $\e$ `e`
+$\pi$ `pi`
+
+$\e$ `e`
 
