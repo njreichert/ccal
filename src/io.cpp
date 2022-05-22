@@ -27,7 +27,7 @@ bool parse_input(const std::vector<std::string> &op_list, RPNStack &stack)
         if (s == "q" || s == "quit" || s == "exit") {
             return false;
         }
-        stack.parse_input(s);
+        stack.apply_input(s);
     }
 
     /* If we have gotten here, we haven't seen quit yet. */

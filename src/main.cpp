@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
         if (options.is_one_shot) {
             try {
                 parse_input(argv_vec, stack);
-                std::cout << pop_or_zero(stack) << std::endl;
+                std::cout << stack.pop_or_zero() << std::endl;
             } catch (const std::exception &e) { /* TODO: See below. */
                 std::cout << "Error: invalid statement." << std::endl; /* TODO: For sure? */
             }

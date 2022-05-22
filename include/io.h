@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "defs.h"
+#include "rpnstack.h"
 
 /**
  * @brief runs though a given line of input (without '\n') and interprets it.
@@ -19,7 +20,7 @@
  *
  * @returns true if 'quit' or 'exit' was not input.
  */
-bool parse_input(const std::vector<std::string> &op_list, std::vector<double> &stack);
+bool parse_input(const std::vector<std::string> &op_list, RPNStack &stack);
 
 /**
  * @brief Prints out the top DISPLAY_SIZE items in the stack, and a prompt for input.
