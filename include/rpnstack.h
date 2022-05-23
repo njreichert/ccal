@@ -34,6 +34,10 @@ private:
 
 public:
     /**
+     * @brief Default constructor.
+     */
+    RPNStack();
+    /**
      * @brief Attempts to apply the given one-argument function to the stack.
      *
      * @throws TODO: Figure out what to throw here.

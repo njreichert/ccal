@@ -22,6 +22,13 @@
 #include "rpnstack.h"
 #include "util.h"
 
+RPNStack::RPNStack()
+    : m_stack{}
+    , m_is_error{false}
+    , m_is_radians{false}
+{
+}
+
 bool RPNStack::is_error() const
 {
     return this->m_is_error;
