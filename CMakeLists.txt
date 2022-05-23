@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.13)
 project(CommandCalc VERSION 0.1.0)
 
+# Tell LSPs where include files are.
+add_compile_definitions(VERSION="${CMAKE_PROJECT_VERSION}")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CommandCalc_SOURCE_DIR}/bin)
 
 set(CMAKE_CXX_FLAGS_DEBUG_INIT "-Wall -g")
@@ -34,7 +38,3 @@ install(TARGETS ccal
     DESTINATION /usr/local/bin
 )
  
-# Tell LSPs where include files are.
-add_compile_definitions(VERSION="${CMAKE_PROJECT_VERSION}")
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
