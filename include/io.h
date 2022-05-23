@@ -28,6 +28,10 @@ bool parse_input(const std::vector<std::string> &op_list, RPNStack &stack);
  * @brief Prints out the top DISPLAY_SIZE items in the stack, and a prompt for input.
  *
  * @param stack The stack to print.
+ * @param is_first_print Whether it is the first time we are printing.
+ *
+ * is_first_print is used to check if we have already printed, and thus
+ * should clear the screen.
  */
-void print_state(const RPNStack &stack);
+void print_state(const RPNStack &stack, bool is_first_print);
 

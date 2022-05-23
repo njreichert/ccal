@@ -38,16 +38,17 @@ int main(int argc, char *argv[])
                 std::cout << "Error: invalid statement." << std::endl; /* TODO: For sure? */
             }
         } else {
+            print_state(stack, true);
             while(running) {
-                print_state(stack);
                 std::getline(std::cin, current_line);
                 std::vector<std::string> op_list = string_to_vec(current_line);
 
                 try {
                     running = parse_input(op_list, stack);
                 } catch (const std::exception &e) { /* TODO: Choose a different exception class. */
-                    std::cout << "Some error has occurred." << std::endl;
+                   /*  std::cout << "Some error has occurred." << std::endl; */
                 }
+                print_state(stack, false);
             }
         }
     }
