@@ -33,5 +33,13 @@ bool parse_input(const std::vector<std::string> &op_list, RPNStack &stack);
  * is_first_print is used to check if we have already printed, and thus
  * should clear the screen.
  */
-void print_state(const RPNStack &stack, bool is_first_print);
+void print_state(const RPNStack &stack);
+
+/**
+ * @brief Clears out enough space for the prompt.
+ *
+ * Clears DISPLAY_SIZE lines for the stack, two lines for the status / prompt, and
+ * one more line for the terminal to line feed into.
+ */
+void setup_screen();
 

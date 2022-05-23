@@ -46,18 +46,27 @@ bool parse_input(const std::vector<std::string> &op_list, RPNStack &stack)
 void ansi_clear_lines(size_t n)
 {
     for (size_t i = 0; i < n; i++) {
-        /* First clear the line (2K) then move up one line (1F). */
-        std::cout << "\033[2K" << "\033[1F" << std::flush;
+        /* First go up one line (1F) then clear the line (2K). */
+        std::cout << "\033[1F" << "\033[2K" << std::flush;
     }
 }
 
-void print_state(const RPNStack &stack, bool is_first_print)
+void setup_screen()
 {
-    if (!is_first_print) {
-        /* One line for status, DISPLAY_SIZE for stack, one for prompt. */
-        ansi_clear_lines(DISPLAY_SIZE + 2); 
+    /* 
+     * Compensating for the user's '\n' here, so exiting will result 
+     * in the prompt at the last line of the terminal at worst.
+     */
+    for (size_t i = 0; i < DISPLAY_SIZE + 2; i++) {
+        std::cout << '\n';
     }
-    
+}
+
+void print_state(const RPNStack &stack)
+{
+    /* One line for status, DISPLAY_SIZE for stack, one for prompt. */
+    ansi_clear_lines(DISPLAY_SIZE + 2); 
+
     /* TODO: Build off of this. */
     if (stack.is_error()) {
         std::cout << "Error\n";
