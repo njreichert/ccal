@@ -17,29 +17,31 @@
 
 #include <stdexcept>
 #include <cctype>
+#include <cmath>
 #include <algorithm>
+#include <iostream>
 #include <vector>
+#include <regex>
 
 #include "util.h"
 
+/*
+ * Match:
+ * - zero or one +/- signs,
+ * - At least one number,
+ * - a dot, followed by at least one number (optional).
+ */
+static const std::regex decimal_num("[+-]{0,1}[0-9]+(\\.[0-9]+|)", std::regex::ECMAScript);
+
 bool is_numeric(std::string str)
 {
-    bool numeric = true;
-
-    /* TODO: This is horrible! */
-    try {
-        std::stod(str); /* Parse string as float. */
-    } catch (const std::invalid_argument &e) {
-        numeric = false;
-    }
-
-    return numeric;
+    /* TODO: Write tests for this. */
+    return std::regex_match(str, decimal_num);
 }
 
 bool is_int(double op)
 {
-    /* TODO: Find a better way to do this. */
-    return (long) op == op;
+    return std::trunc(op) == op;
 }
 
 double pop_or_zero(std::vector<double> &stack)
