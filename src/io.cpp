@@ -62,10 +62,12 @@ void setup_screen()
     }
 }
 
-void print_state(const RPNStack &stack)
+void print_state(const RPNStack &stack, bool no_escape)
 {
-    /* One line for status, DISPLAY_SIZE for stack, one for prompt. */
-    ansi_clear_lines(DISPLAY_SIZE + 2); 
+    if (!no_escape) {
+        /* One line for status, DISPLAY_SIZE for stack, one for prompt. */
+        ansi_clear_lines(DISPLAY_SIZE + 2); 
+    }
 
     /* TODO: Build off of this. */
     if (stack.is_error()) {

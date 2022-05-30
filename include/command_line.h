@@ -21,12 +21,12 @@
  * @var CommandOpts::is_one_shot Whether the program should evaluate argv directly.
  *     In this case, ccal will print out the top of the stack after evaluation and exit.
  *
- * @var CommandOpts::one_shot_start The argument to get the one-shot statement from.
- *     The statement parser will concatenate all arguments starting from this one.
+ * @var CommandOpts::no_escape Whether to disable TUI mode / escape sequences.
  */
 typedef struct COMMAND_OPTS {
     bool exit;
     bool is_one_shot;
+    bool no_escape;
 } CommandOpts;
 
 /**

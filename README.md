@@ -32,6 +32,7 @@ $ ccal 1 2 +
 ### Options
 `-h` `--help` - Print a help statement.
 `-v` `--version` - Print the program's version.
+`-n` `--no-ansi` - Disable TUI mode
 
 ## Available Operators
 

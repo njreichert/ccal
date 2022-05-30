@@ -25,6 +25,7 @@ const std::string HELP_PRINT = R"(Usage:
 Options:
  -h, --help         Print a help statement.
  -v, --version      Print the current version.
+ -n, --no-ansi      Disable TUI mode
 
 Statements:
  Statements are only executed in the absence of other options.)";

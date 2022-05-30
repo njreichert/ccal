@@ -32,6 +32,8 @@ CommandOpts parse_cmd_line_args(const std::vector<std::string> &args)
         } else if (args[0] == "-v" || args[0] == "--version") {
             std::cout << VERSION_PRINT << std::endl;
             opts.exit = true;
+        } else if (args[0] == "-n" || args[0] == "--no-ansi") {
+            opts.no_escape = true;
         } else if (is_numeric(args[0])) {
             /* 
              * Assuming for the time being that we are not parsing any arguments
