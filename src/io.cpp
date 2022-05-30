@@ -69,12 +69,7 @@ void print_state(const RPNStack &stack, bool no_escape)
         ansi_clear_lines(DISPLAY_SIZE + 2); 
     }
 
-    /* TODO: Build off of this. */
-    if (stack.is_error()) {
-        std::cout << "Error\n";
-    } else {
-        std::cout << "Normal\n";
-    }
+    std::cout << stack.error_msg() << '\n';
 
     for (std::vector<double>::size_type i = DISPLAY_SIZE; i > 0; i--) {
         std::cout << i << ":\t" << stack.get(i - 1) << '\n';
@@ -82,4 +77,3 @@ void print_state(const RPNStack &stack, bool no_escape)
 
     std::cout << "> " << std::flush;
 }
-

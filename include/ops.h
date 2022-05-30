@@ -30,9 +30,6 @@
  */
 double factorial(double a);
 
-/* Two-argument functions */
-/* TODO */
-
 /* Commands */
 /**
  * @brief Destructively sums all elements of the given stack together, saving to its end.

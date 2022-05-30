@@ -30,6 +30,8 @@ private:
     std::vector<double> m_stack;
     
     bool m_is_error;
+    std::string m_error_msg;
+
     bool m_is_radians; /* I only intend to support radians or degrees. */
 
 public:
@@ -46,16 +48,21 @@ public:
      * @returns The value at the top of the stack after the operation completes.
      */
     double apply_input(const std::string &s);
-
-    /**
-     * @brief Getter for m_is_error.
-     */
-    bool is_error() const;
     
     /**
      * @brief Setter for m_is_error.
      */
     void is_error(bool error);
+    
+    /**
+     * @brief Gets either "Normal" or m_error_msg, depending on is_error().
+     */
+    std::string error_msg() const;
+    
+    /**
+     * @brief Setter for m_error_msg.
+     */
+    void error_msg(std::string msg);
 
     /**
      * @brief Getter for m_is_radians.
@@ -138,7 +145,6 @@ namespace RPNHelpers {
         {"*", [](double a, double b){ return a * b; }},
         {"/", [](double a, double b){ return a / b; }},
         
-        /* TODO: Find a way to combine these two, as they're just semantics. */
         {"^", [](double a, double b){ return std::pow(a, b); }},
         {"pow", [](double a, double b){ return std::pow(a, b); }},
         {"nroot", [](double a, double b){ return std::pow(b, (1 / a)); }}

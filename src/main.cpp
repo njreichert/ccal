@@ -46,12 +46,8 @@ int main(int argc, char *argv[])
             while(running) {
                 std::getline(std::cin, current_line);
                 std::vector<std::string> op_list = string_to_vec(current_line);
-
-                try {
-                    running = parse_input(op_list, stack);
-                } catch (const std::exception &e) { /* TODO: Choose a different exception class. */
-                   /*  std::cout << "Some error has occurred." << std::endl; */
-                }
+                
+                running = parse_input(op_list, stack);
                 print_state(stack, options.no_escape);
             }
         }

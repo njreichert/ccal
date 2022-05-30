@@ -29,14 +29,23 @@ RPNStack::RPNStack()
 {
 }
 
-bool RPNStack::is_error() const
-{
-    return this->m_is_error;
-}
-
 void RPNStack::is_error(bool error)
 {
     this->m_is_error = error;
+}
+
+std::string RPNStack::error_msg() const
+{
+    if (this->m_is_error) {
+        return this->m_error_msg;
+    } else {
+        return "Normal";
+    }
+}
+
+void RPNStack::error_msg(std::string msg)
+{
+    this->m_error_msg = msg;
 }
 
 bool RPNStack::is_radians() const
@@ -122,8 +131,12 @@ double RPNStack::apply_input(const std::string &s)
         }
 
         this->is_error(false);
+    } catch (const std::invalid_argument &e) {
+        this->is_error(true);
+        this->error_msg(std::string("Invalid operand: ") + e.what());
     } catch (const std::exception &e) {
-        this->is_error(true); /* TODO: Be more descriptive. */
+        this->is_error(true);
+        this->error_msg("Unknown error");
     }
 
     return this->get(0);
@@ -148,4 +161,3 @@ double RPNStack::sum()
 
     return sum;
 }
-
