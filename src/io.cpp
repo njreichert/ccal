@@ -69,6 +69,12 @@ void print_state(const RPNStack &stack, bool no_escape)
         ansi_clear_lines(DISPLAY_SIZE + 2); 
     }
 
+    if (stack.is_radians()) {
+        std::cout << "RAD\t";
+    } else {
+        std::cout << "DEG\t";
+    }
+
     std::cout << stack.error_msg() << '\n';
 
     for (std::vector<double>::size_type i = DISPLAY_SIZE; i > 0; i--) {

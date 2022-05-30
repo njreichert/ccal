@@ -103,6 +103,10 @@ double RPNStack::parse_stack_ops(const std::string &s)
         this->clear();
     } else if (s == "sum") {
         this->sum();
+    } else if (s == "deg") {
+        this->is_radians(false);
+    } else if (s == "rad") {
+        this->is_radians(true);
     } else {
         throw std::invalid_argument(s);
     }
@@ -119,6 +123,14 @@ double RPNStack::apply_input(const std::string &s)
             double op_one = this->pop_or_zero();
 
             this->push(RPNHelpers::one_arg_ops.at(s)(op_one));
+        } else if (RPNHelpers::trig_ops.find(s) != RPNHelpers::trig_ops.end()) {
+            double op_one = this->pop_or_zero();
+
+            if (!this->is_radians()) {
+                op_one = op_one * M_PI / 180.0;
+            }
+
+            this->push(RPNHelpers::trig_ops.at(s)(op_one));
         } else if (RPNHelpers::two_arg_ops.find(s) != RPNHelpers::two_arg_ops.end()) {
             double op_two = this->pop_or_zero();
             double op_one = this->pop_or_zero();

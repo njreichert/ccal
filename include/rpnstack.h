@@ -125,18 +125,21 @@ namespace RPNHelpers {
     const std::unordered_map<std::string, OneFunc> one_arg_ops = {
         {"sqrt", [](double a){ return std::sqrt(a); }},
         {"exp", [](double a){ return std::exp(a); }},
-        {"sin", [](double a){ return std::sin(a); }},
-        {"cos", [](double a){ return std::cos(a); }},
-        {"tan", [](double a){ return std::tan(a); }},
-        {"arcsin", [](double a){ return std::asin(a); }},
-        {"arccos", [](double a){ return std::acos(a); }},
-        {"arctan", [](double a){ return std::atan(a); }},
         {"log", [](double a){ return std::log10(a); }}, /* Yes, log10. log_e == ln. */
         {"ln", [](double a){ return std::log(a); }},
         {"log2", [](double a){ return std::log2(a); }},
         {"abs", [](double a){ return std::abs(a); }},
         {"inv", [](double a){ return (1 / a); }},
         {"!", factorial}
+    };
+
+    const std::unordered_map<std::string, OneFunc> trig_ops = {
+        {"sin", [](double a){ return std::sin(a); }},
+        {"cos", [](double a){ return std::cos(a); }},
+        {"tan", [](double a){ return std::tan(a); }},
+        {"arcsin", [](double a){ return std::asin(a); }},
+        {"arccos", [](double a){ return std::acos(a); }},
+        {"arctan", [](double a){ return std::atan(a); }}
     };
 
     const std::unordered_map<std::string, TwoFunc> two_arg_ops = {
