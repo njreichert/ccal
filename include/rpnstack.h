@@ -150,7 +150,9 @@ namespace RPNHelpers {
         
         {"^", [](double a, double b){ return std::pow(a, b); }},
         {"pow", [](double a, double b){ return std::pow(a, b); }},
-        {"nroot", [](double a, double b){ return std::pow(b, (1 / a)); }}
+        {"nroot", [](double a, double b){ return std::pow(b, (1 / a)); }},
+        {"%", [](double a, double b){ return std::fmod(a, b); }},
+        {"mod", [](double a, double b){ return std::fmod(a, b); }}
     };
 
     const std::unordered_map<std::string, double> constants = {

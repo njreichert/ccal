@@ -42,6 +42,8 @@ $\sqrt{x}$ `sqrt`
 
 $e^x$ `exp`
 
+$x % y$ `mod %`
+
 $sin(x)$ `sin`
 
 $cos(x)$ `cos`
